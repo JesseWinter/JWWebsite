@@ -1,0 +1,598 @@
+.onset-logo {
+    margin-left: -15px;
+}
+.onset-title {
+    margin-left: -10px;
+    font-size: 1rem;
+}
+.vfx-reel-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    position: relative;
+    top: -120px;
+}
+/* VFX Reel page styles */
+.vfx-showcase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 400px;
+    position: relative;
+    top: -50px;
+}
+
+.vfx-reel-title {
+    font-size: 4.5rem;
+    color: #aa5454;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.vfx-reel-date {
+    font-size: 2.5rem;
+    color: #aa5454;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    top: -60px;
+}
+.slideshow img {
+    background: #444;
+    border: 2px solid #fff;
+}
+/* Slideshow styles */
+.home-slideshow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    background: #222;
+}
+
+.slideshow {
+    position: relative;
+    width: 600px;
+    height: 350px;
+    overflow: hidden;
+}
+
+.slideshow img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+    object-fit: stretch;
+    z-index: 1;
+}
+
+.slideshow img.active {
+    opacity: 1;
+    z-index: 2;
+}
+body {
+    font-family: Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Prevent scrolling on the index page */
+body.homepage {
+    overflow: hidden; /* Stops scrolling only on the homepage */
+}
+
+/* Header - Ensures it stays on top */
+header {
+    background-color: #aa5454;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    height: 100px;
+    position: relative; /* Ensures text stays in place */
+    z-index: 1000; /* Keeps header on top of everything */
+}
+
+/* Centered Header Text */
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-family: Tahoma, sans-serif;
+    color: white;
+}
+
+/* "Jesse Winter" Text */
+.header-title h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+/* "VFX Artist & Film Colorist" Text */
+.header-title p {
+    font-size: 1em;
+    margin: 0;
+}
+
+
+.logo img {
+    height: 100px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+/* Slideshow Container */
+.slideshow {
+    position: absolute;
+    top: 0%; /* Adjusted to prevent header overlap */
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Slideshow Images */
+.slideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures full image visibility */
+    position: absolute;
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+    background-color: black; /* Prevents blank gaps */
+}
+
+.slideshow img.active {
+    opacity: 1;
+}
+
+/* Hero Text (Homepage) */
+.hero-text {
+    position: relative;
+    top: 50px;
+    left: 0px;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adds subtle depth */
+}
+
+.hero-text h1 {
+    font-size: 6em; /* Reverted */
+    font-weight: bold;
+    -webkit-text-stroke: 2px white;
+    margin-bottom: 10px; /* Reduced spacing (previously ~20px) */
+}
+
+.hero-text p {
+    font-size: 2em; /* Reverted */
+    -webkit-text-stroke: 1px white;
+    margin-top: 5px; /* Reduced spacing (previously ~10px) */
+}
+
+
+/* About PAGE */
+body {
+    background-color: #eceaea; /* Light gray background */
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: 600px; /* Limit the height */
+    overflow: hidden; /* Prevent scrolling beyond the set height */
+}
+
+/* About Page Image */
+.about-header img {
+    width: 100%;
+    height: 650px;
+    object-fit: cover;
+    display: block;
+}
+
+/* About Section */
+.about-section {
+    position: relative; /* Allows child elements to be positioned absolutely */
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    background-color: #eceaea; /* Light gray */
+    height: 500px;
+    width: 50%;
+}
+
+.about-text {
+    background-color: #eceaea; /* Light gray */
+    padding: 25px;
+    width: 75%;
+    min-height: 500px; /* Ensure it matches the section height */
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+}
+
+/* Navigation Links - Hover Effect */
+nav ul li a:hover {
+    color: #e9b0b0; /* Change text color to #e9b0b0 on hover */
+    transition: color 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+/* About Me Text Overlay */
+.about-text-overlay {
+    position: absolute;
+    top: 150px; /* Moved down by 200px */
+    left: 50px; /* Keeps text aligned to the left */
+    color: white;
+    font-family: Tahoma, sans-serif;
+    text-align: left;
+    max-width: 700px; /* Adjust width to keep text readable */
+    z-index: 5; /* Ensures text is above the image */
+}
+
+.about-text-overlay h2 {
+    font-size: 5em; /* Increased by 2em */
+    margin-bottom: 7.5px; /* Reduced by 25% */
+    position: relative;
+    top: 25px; /* Moves it down by 25px */
+}
+
+.about-text-overlay p {
+    font-size: 2em; /* Increased by 2em */
+    line-height: 1.125; /* Reduced line spacing by 25% */
+    margin-bottom: 15px; /* Reduced by 25% */
+}
+
+.about-text-overlay .resume {
+    position: relative;
+    top: -25px;
+    font-size: 2em;
+    text-decoration: underline;
+    cursor: pointer;
+    color: white; /* Makes the text color white */
+}
+
+.linkedin-container {
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    max-width: 100px; /* Allow more space */
+    height: auto;
+}
+
+.linkedin-container img {
+    position: relative;
+    top: 45px; /* Moves it down */
+    left: -125px; /* Moves it to the left */
+    width: 100%;
+    max-width: 50px; /* Adjust based on your needs */
+    height: auto;
+    object-fit: contain; /* Ensures full visibility */
+}
+
+/* Houdini Logo - Keep aspect ratio */
+.houdini-logo {
+    width: 50px !important; 
+    height: auto !important; /* Keeps aspect ratio */
+    display: block;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.houdini-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between logo and text */
+}
+
+.houdini-title {
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 1.25em;
+    position: relative;
+    top: 10px;
+}
+
+.houdini-description {
+    font-family: Tahoma, sans-serif;
+    font-size: 1em;
+    text-align: left;
+    position: relative;
+    left: 20px;
+    max-width: 200px; /* Adjust if needed */
+    margin-top: 5px;
+}
+
+/* NUKE LOGO SECTION */
+
+.nuke-logo {
+    position: relative;
+    top: 10px;
+    left: -45px;
+    width: 50px !important; 
+    height: auto !important; /* Keeps aspect ratio */
+    display: block;
+    margin-left: 125px; /* Moves it 200px to the right of the Houdini title */
+}
+
+.nuke-title {
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 1.25em;
+    position: relative;
+    top: 10px;
+    left: -45px;
+}
+
+.nuke-description {
+    font-family: Tahoma, sans-serif;
+    font-size: 1em;
+    text-align: left;
+    position: relative;
+    top: -155px;
+    left: 275px;
+    max-width: 200px; /* Adjust if needed */
+    margin-top: 5px;
+}
+
+/* MAYA LOGO SECTION */
+.maya-logo {
+    position: relative;
+    top: 5px;
+    width: 50px !important; 
+    height: auto !important; /* Keeps aspect ratio */
+    display: block;
+    margin-left: 150px; /* Moves it 200px to the right of the Nuke title */
+}
+
+.maya-title {
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 1.25em;
+    position: relative;
+    top: 10px;
+}
+
+.maya-description {
+    font-family: Tahoma, sans-serif;
+    font-size: 1em;
+    text-align: left;
+    position: relative;
+    top: -230px;
+    left: 590px;
+    max-width: 200px; /* Adjust if needed */
+    margin-top: 5px;
+}
+
+/* UNREAL SECTION */
+.unreal-logo {
+    position: relative;
+    top: 275px;
+    left: -847px;
+    width: 55px !important; 
+    height: auto !important; /* Keeps aspect ratio */
+    display: block;
+    margin-left: 150px; /* Moves it 200px to the right of the Nuke title */
+}
+
+.unreal-title {
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 1.25em;
+    position: relative;
+    top: 275px;
+    left: -847px;
+}
+
+.unreal-description {
+    font-family: Tahoma, sans-serif;
+    font-size: 1em;
+    text-align: left;
+    position: relative;
+    top: -75px;
+    left: 25px;
+    max-width: 200px;
+    margin-top: 5px;
+}
+
+/* OnSet Section */
+.onset-logo {
+    position: relative;
+    top: 270px;
+    left: -742px;
+    width: 55px !important; 
+    height: auto !important; /* Keeps aspect ratio */
+    display: block;
+}
+
+.onset-title {
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 1.25em;
+    position: relative;
+    top: 275px;
+    left: -742px;
+}
+
+.onset-description {
+    font-family: Tahoma, sans-serif;
+    font-size: 1em;
+    text-align: left;
+    position: relative;
+    top: -185px;
+    left: 275px;
+    max-width: 200px;
+    margin-top: 5px;
+}
+
+/* Supervision Section */
+.supervision-logo {
+    position: relative;
+    top: 270px;
+    left: -700px;
+    width: 55px !important; 
+    height: auto !important; /* Keeps aspect ratio */
+    display: block;
+}
+
+.supervision-title {
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 1.25em;
+    position: relative;
+    top: 275px;
+    left: -700px;
+}
+
+.supervision-description {
+    font-family: Tahoma, sans-serif;
+    font-size: 1em;
+    text-align: left;
+    position: relative;
+    top: -320px;
+    left: 600px;
+    max-width: 200px;
+    margin-top: 5px;
+}
+
+body {
+    overflow: auto;
+    height: 900px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Color Grading Style Section */
+.color-grading-header {
+    position: relative;
+    top: -80px;
+    text-align: center;
+    margin-top: 0; /* Remove negative margin */
+    padding-top: 0px; /* Add padding if needed */
+}
+
+.color-grading-header h1 {
+    font-size: 5.5em; /* Increased by 2em */
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    color: #aa5454; /* Updated color */
+    margin-bottom: 0px;
+}
+
+.color-grading-header p {
+    font-size: 2.5em; /* Increased by 1.5em */
+    font-family: Tahoma, sans-serif;
+    font-weight: normal;
+    color: #aa5454; /* Updated color */
+    margin-top: 0;
+}
+
+.color-grading-video {
+    text-align: center;
+    margin-top: 0; /* Remove negative margin */
+}
+
+.color-grading-video video {
+    position: relative;
+    top: -100px;
+    width: 80%;
+    max-width: 1000px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.color-grading-tab {
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    overflow: hidden; /* No scrolling inside the tab */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Ensures it never moves */
+    top: 0;
+    left: 0;
+}
+
+
+/* VFX Styles Section */
+.vfx-header {
+    text-align: center;
+    margin-top: -75px; /* Matches Color Grading Page */
+}
+
+.vfx-header h1 {
+    font-size: 5.5em; /* Same size as Color Grading */
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+    color: #aa5454; /* Same color */
+    margin-bottom: 0px;
+}
+
+.vfx-header p {
+    font-size: 2.5em; /* Same size as Color Grading */
+    font-family: Tahoma, sans-serif;
+    font-weight: normal;
+    color: #aa5454; /* Same color */
+    margin-top: 0;
+}
+
+/* PANDORA SECTION */
+.pandora-content {
+    font-family: Tahoma, sans-serif; /* Sets the font to Tahoma */
+    font-size: 3.5em; /* Adjusts the font size */
+    font-weight: bold; /* Makes the text bold */
+    text-align: center; /* Optional: Centers the text */
+    color: #aa5454; /* Optional: Sets a dark gray color for readability */
+    margin: 20px auto; /* Adds space around the content */
+    position: relative;
+    top: -70px;
+}
+
+.storyboards-section {
+    position: relative;
+    top: -100px;
+    text-align: center;
+    margin-top: 20px;
+    font-family: Tahoma, sans-serif;
+}
+
+.storyboards-section h2 {
+    font-size: 3.5em; /* Sets the font size */
+    font-weight: normal; /* Keeps it regular */
+    color: #aa5454; /* Optional: Dark gray for readability */
+    margin-bottom: 10px;
+}
+
+.storyboards-section a {
+    font-size: 2.5em; /* Makes the link slightly smaller */
+    text-decoration: underline;
+    color: #7e3c3c; /* Blue for clear visibility */
+    cursor: pointer;
+}
+
+.storyboards-section a:hover {
+    color: #e9b0b0; /* Changes color on hover for interactivity */
+    transition: color 0.3s ease-in-out; /* Smooth transition effect */
+}
