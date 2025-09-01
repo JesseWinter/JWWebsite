@@ -1,6 +1,5 @@
 <script>
     import logo from '$lib/images/WebsiteLogo.png';
-    import vfxReel from '$lib/videos/August2025_VFXReel.mp4';
 </script>
 
 <svelte:head>

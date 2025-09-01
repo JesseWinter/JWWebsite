@@ -1,6 +1,5 @@
 <script>
     import logo from '$lib/images/WebsiteLogo.png';
-    import colorReel from '$lib/videos/August2025_ColorReel.mp4';
 </script>
 
 <svelte:head>
