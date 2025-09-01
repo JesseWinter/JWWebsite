@@ -14,10 +14,7 @@
             <h2 class="vfx-reel-title"><strong>VFX Reel</strong></h2>
             <p class="vfx-reel-date">August 2025</p>
             <div class="vfx-reel-video">
-                    <video controls width="1058">
-                    <source src={vfxReel} type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe src="https://player.vimeo.com/video/1112729626?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="960" height="540" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="JWVFX_August2025Reel"></iframe>
             </div>
         </section>
     </main>

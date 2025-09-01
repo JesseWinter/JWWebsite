@@ -14,10 +14,7 @@
             <h2 class="reel-title"><strong>Color Grading Reel</strong></h2>
             <p class="reel-date">August 2025</p>
             <div class="reel-video">
-                <video controls width="1058">
-                    <source src={colorReel} type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe src="https://player.vimeo.com/video/1112141968?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="960" height="540" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="JESSEWINTER_COLORREEL_August2025"></iframe>
             </div>
         </section>
     </main>
