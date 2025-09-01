@@ -4,7 +4,7 @@
  */
 {
     "$schema": "node_modules/wrangler/config-schema.json",
-    "name": "cloudflare-test",
+    "name": "jessewintervfx",
     "compatibility_date": "2025-08-31",
     "compatibility_flags": [
         "nodejs_als"
