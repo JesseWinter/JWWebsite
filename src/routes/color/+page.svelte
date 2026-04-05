@@ -11,7 +11,7 @@
     <main>
         <section class="showcase">
             <h2 class="reel-title"><strong>Color Grading Reel</strong></h2>
-            <p class="reel-date">August 2025</p>
+            <p class="reel-date">April 2026</p>
             <div class="reel-video">
                 <iframe src="https://player.vimeo.com/video/1179944151?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="JESSEWINTER_COLORREEL_April2026"></iframe>
             </div>
