@@ -43,6 +43,7 @@
     font-size: 4.5rem;
     color: #aa5454;
     font-weight: bold;
+    font-family: Tahoma, sans-serif;
     text-align: center;
     margin-bottom: 1rem;
     position: relative;
@@ -52,6 +53,7 @@
 .vfx-reel-date {
     font-size: 2.5rem;
     color: #aa5454;
+    font-family: Tahoma, sans-serif;
     text-align: center;
     font-weight: bold;
     position: relative;

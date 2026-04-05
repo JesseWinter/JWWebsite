@@ -1,3 +1,2 @@
-@import '@fontsource/fira-mono';
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin 'flowbite/plugin';
