@@ -8,20 +8,25 @@
 </svelte:head>
 
 <section>
-    <main>
-        <section class="showcase">
-            <h2 class="reel-title"><strong>Color Grading Reel</strong></h2>
-            <p class="reel-date">April 2026</p>
-            <div class="reel-video">
-    <iframe 
-        src="https://player.vimeo.com/video/1179944151"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen
-        title="Color Grading Reel">
-    </iframe>
-</div>
-        </section>
-    </main>
+  <main>
+    <section class="showcase">
+      <h2 class="reel-title"><strong>Color Grading Reel</strong></h2>
+      <p class="reel-date">April 2026</p>
+
+      <div class="reel-video">
+        <div style="padding:56.25% 0 0 0; position:relative;">
+          <iframe 
+            src="https://player.vimeo.com/video/1179944151" 
+            frameborder="0" 
+            allow="autoplay; fullscreen; picture-in-picture" 
+            allowfullscreen
+            style="position:absolute; top:0; left:0; width:100%; height:100%;">
+          </iframe>
+        </div>
+      </div> <!-- ✅ THIS WAS MISSING -->
+
+    </section>
+  </main>
 </section>
 
 <style>
