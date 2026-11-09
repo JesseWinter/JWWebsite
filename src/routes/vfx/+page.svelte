@@ -11,9 +11,9 @@
     <main>
         <section class="vfx-showcase">
             <h2 class="vfx-reel-title"><strong>VFX Reel</strong></h2>
-            <p class="vfx-reel-date">August 2025</p>
+            <p class="vfx-reel-date">November 2026</p>
             <div class="vfx-reel-video">
-                <iframe src="https://player.vimeo.com/video/1112729626?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="960" height="540" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="JWVFX_August2025Reel"></iframe>
+                <iframe src="https://player.vimeo.com/video/1245255531?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="960" height="540" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="VFXNOV2026"></iframe>
             </div>
         </section>
     </main>
