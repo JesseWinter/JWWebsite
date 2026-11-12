@@ -1,359 +1,295 @@
 <script>
-    import logo from '$lib/images/WebsiteLogo.png';
-	import about from '$lib/images/AboutMeJesse.png';
-	import houdiniLogo from '$lib/images/HoudiniLogo.png';
-	import nukeLogo from '$lib/images/NukeLogo.png';
-	import mayaLogo from '$lib/images/MayaLogo.png';
-	import unrealLogo from '$lib/images/UnrealLogo.png';
-	import onsetLogo from '$lib/images/OnSetLogo.png';
-	import supervisionLogo from '$lib/images/SupervisionLogo.png';
-	import linkedIn from '$lib/images/LinkedInLogo.png';
-	import Resume from '$lib/JesseWinterResume.pdf';
+  import portrait from '$lib/images/AboutMeJesse.png';
+  import houdiniLogo from '$lib/images/HoudiniLogo.png';
+  import nukeLogo from '$lib/images/NukeLogo.png';
+  import mayaLogo from '$lib/images/MayaLogo.png';
+  import unrealLogo from '$lib/images/UnrealLogo.png';
+  import onsetLogo from '$lib/images/OnSetLogo.png';
+  import supervisionLogo from '$lib/images/SupervisionLogo.png';
+  import resume from '$lib/JesseWinterResume.pdf';
+
+  const skills = [
+    {
+      name: 'Houdini',
+      icon: houdiniLogo,
+      description:
+        'I use Houdini for simulation and procedural workflows. I also build tools and digital assets to make production workflows more efficient.'
+    },
+    {
+      name: 'Nuke',
+      icon: nukeLogo,
+      description: 'Nuke is my go-to compositing tool and a key part of my 3D workflow.'
+    },
+    {
+      name: 'Maya',
+      icon: mayaLogo,
+      description:
+        'I use Maya for modeling and lighting, and render CG shots with Arnold, Redshift, and Pixar’s RenderMan.'
+    },
+    {
+      name: 'Unreal Engine',
+      icon: unrealLogo,
+      description:
+        'I use Unreal Engine for lighting, rendering, and Niagara simulations alongside my other 3D tools.'
+    },
+    {
+      name: 'On-set supervision',
+      icon: onsetLogo,
+      description:
+        'On set, I record camera settings and gather lens distortion references, color charts, and HDRIs to help the VFX team match the footage.'
+    },
+    {
+      name: 'Project supervision',
+      icon: supervisionLogo,
+      description:
+        'I work with the director to carry their vision through post and assign shots based on each artist’s strengths.'
+    }
+  ];
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+  <title>About | Jesse Winter</title>
+  <meta
+    name="description"
+    content="Meet Jesse Winter, an Atlanta-based visual effects artist, 3D generalist, and film colorist."
+  />
 </svelte:head>
 
-<section id="wrapper">
-    <section class="about-header">
-        <img id="about" src={about}>
-        <div class="about-text-overlay">
-            <h2>ABOUT ME</h2>           
-            <p>I'm Jesse Winter, a Visual Effects Artist, 3D Generalist, and Film Colorist. With 4  
-            years of experience, I’m always trying to learn new
-               skills to enhance my creative toolkit.</p>
-               <a class="resume" href={Resume}>RESUME</a>
-               <a href="https://www.linkedin.com/in/jessewintervfx/" target="_blank" class="linkedin-link">
-                <div class="linkedin-container">
-                    <img src={linkedIn}>
-                </div>
-            </a>                      
-    </section>    
+<div class="about-page">
+  <div class="about-inner">
+    <section class="intro" aria-labelledby="about-title">
+      <div class="intro-copy">
+        <p class="eyebrow">Atlanta, GA</p>
+        <h1 id="about-title">About me</h1>
+        <p class="bio">
+          I’m Jesse Winter, a Visual Effects Artist, 3D Generalist, and Film Colorist.
+          With 4 years of experience, I’m always trying to learn new skills to enhance
+          my creative toolkit.
+        </p>
 
-    <div class="houdini-container">
-        <img src={houdiniLogo} alt="Houdini Logo" class="houdini-logo">
-        <span class="houdini-title">HOUDINI</span>
-        <img src={nukeLogo} alt="Nuke Logo" class="nuke-logo">
-        <span class="nuke-title">NUKE</span>
-        <img src={mayaLogo} alt="Maya Logo" class="maya-logo">
-        <span class="maya-title">MAYA</span>
-        <img src={unrealLogo} alt="Unreal Logo" class="unreal-logo">
-        <span class="unreal-title">UNREAL</span>
-        <img src={onsetLogo} alt="OnSet Logo" class="onset-logo">
-        <span class="onset-title">ON-SET SUPERVISION</span>
-        <img src={supervisionLogo} alt="Supervision Logo" class="supervision-logo">
-        <span class="supervision-title">PROJECT SUPERVISION</span>
-    </div>
-    <p class="houdini-description">
-        I am confident in my skill with
-        simulation and procedural workflows
-        using Houdini. I have experience
-        setting up tools and digital assets
-        to optimize productions.
-    </p>
-    
-    <p class="nuke-description">
-        Compositing tool of choice.
-        Another powerhouse that enhances
-        my 3D workflow.
-    </p>
+        <div class="profile-links">
+          <a class="resume-link" href={resume} target="_blank" rel="noopener noreferrer">
+            View résumé
+          </a>
+          <a
+            class="linkedin-link"
+            href="https://www.linkedin.com/in/jessewintervfx/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
 
-    <p class="maya-description">
-        Modeling and lighting tool of
-        choice. Rendering through
-        Arnold, Redshift, and Pixar's
-        Renderman, I complete all my
-        CG shots.
-    </p>
+      <figure class="portrait">
+        <img
+          src={portrait}
+          alt="Jesse Winter on set holding a color chart"
+          width="2050"
+          height="1000"
+          fetchpriority="high"
+        />
+      </figure>
+    </section>
 
-    <p class="unreal-description">
-        Compliments my skillset in other
-        3D digital content creation apps.
-        I'm proficient in lighting,
-        rendering, and simulation
-        through Niagara.
-    </p>
+    <section class="experience" aria-labelledby="experience-title">
+      <h2 id="experience-title">Tools &amp; experience</h2>
 
-    <p class="onset-description">
-        Being on set allows me to grab
-        vital information such as camera
-        settings, lens distortion, color
-        calibration, and grabbing HDRIs
-        of each location.
-    </p>
-
-    <p class="supervision-description">
-        Working in the supervisor role
-        allows me to work with the
-        director's vision. I keep my team's
-        morale up by working with them and
-        assigning them shots that are best
-        suited to their skill set.
-    </p>
-</section>
+      <div class="skills-grid">
+        {#each skills as skill (skill.name)}
+          <article class="skill">
+            <img src={skill.icon} alt="" width="38" height="38" loading="lazy" />
+            <h3>{skill.name}</h3>
+            <p>{skill.description}</p>
+          </article>
+        {/each}
+      </div>
+    </section>
+  </div>
+</div>
 
 <style>
-.resume {
-    position: relative;
-}
+  .about-page {
+    --about-paper: var(--paper, #f8f0eb);
+    --about-ink: var(--ink, #28191d);
+    --about-wine: var(--wine, #641220);
+    --about-berry: var(--berry, #85182a);
+    --about-ruby: var(--ruby, #a11d33);
+    --about-rule: var(--rule, #ddc9c8);
+    --about-muted: var(--muted, #685257);
+    --about-cream: var(--cream, #fff5ed);
+    --about-gutter: clamp(18px, 4.2vw, 64px);
 
-#about {
-    width: 100%;
-    height: 650px;
-    display: block;
-    object-fit: cover;
-}
+    background: var(--about-paper);
+    color: var(--about-ink);
+    font-family: var(--body, 'Instrument Sans', Arial, sans-serif);
+  }
 
-/* About Me Text Overlay */
-.about-text-overlay {
-    position: absolute;
-    top: 150px; /* Moved down by 200px */
-    left: 50px; /* Keeps text aligned to the left */
-    color: white;
-    font-family: Tahoma, sans-serif;
-    text-align: left;
-    max-width: 700px; /* Adjust width to keep text readable */
-    z-index: 5; /* Ensures text is above the image */
-}
+  .about-inner {
+    width: min(1320px, calc(100% - var(--about-gutter) * 2));
+    margin-inline: auto;
+    padding-bottom: clamp(30px, 5vw, 62px);
+  }
 
-.about-text-overlay h2 {
-    font-size: 5em; /* Increased by 2em */
-    margin-bottom: 7.5px; /* Reduced by 25% */
-    position: relative;
-    top: 25px; /* Moves it down by 25px */
-}
-
-.about-text-overlay p {
-    font-size: 2em; /* Increased by 2em */
-    line-height: 1.125; /* Reduced line spacing by 25% */
-    margin-bottom: 15px; /* Reduced by 25% */
-}
-
-.about-text-overlay .resume {
-    position: relative;
-    top: -25px;
-    font-size: 2em;
-    text-decoration: underline;
-    cursor: pointer;
-    color: white; /* Makes the text color white */
-}
-
-.linkedin-container {
-    display: inline-block;
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
     align-items: center;
-    justify-content: center;
-    max-width: 100px; /* Allow more space */
-    height: auto;
-}
+    gap: clamp(24px, 4vw, 58px);
+    padding-block: clamp(34px, 5.5vw, 74px) clamp(32px, 5vw, 64px);
+  }
 
-.linkedin-container img {
-    position: relative;
-    top: 45px; /* Moves it down */
-    left: -130px; /* Moves it to the left */
-    width: 100%;
-    max-width: 50px; /* Adjust based on your needs */
-    height: auto;
-    object-fit: contain; /* Ensures full visibility */
-}
+  .eyebrow {
+    margin: 0;
+    color: var(--about-berry);
+    font-family: var(--mono, 'IBM Plex Mono', monospace);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
 
-/* Houdini Logo - Keep aspect ratio */
-.houdini-logo {
-    width: 50px !important; 
-    height: auto !important; /* Keeps aspect ratio */
-    display: block;
-    margin-top: 20px;
-    margin-left: 20px;
-}
+  h1 {
+    margin: 9px 0 19px;
+    color: var(--about-wine);
+    font-family: var(--display, 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif);
+    font-size: clamp(3rem, 6.8vw, 7rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
 
-.houdini-container {
+  .bio {
+    max-width: 40ch;
+    margin: 0;
+    font-size: clamp(1rem, 1.65vw, 1.22rem);
+    line-height: 1.55;
+  }
+
+  .profile-links {
     display: flex;
     align-items: center;
-    gap: 10px; /* Space between logo and text */
-}
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 20px;
+  }
 
-.houdini-title {
-    font-family: Tahoma, sans-serif;
-    font-weight: bold;
-    font-size: 1.25em;
-    position: relative;
-    top: 10px;
-}
+  .profile-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: 600;
+  }
 
-.houdini-description {
-    font-family: Tahoma, sans-serif;
-    font-size: 1em;
-    text-align: left;
-    position: relative;
-    left: 20px;
-    max-width: 200px; /* Adjust if needed */
-    margin-top: 5px;
-}
+  .resume-link {
+    padding-inline: 15px;
+    background: var(--about-ruby);
+    color: var(--about-cream);
+    text-decoration: none;
+  }
 
-/* NUKE LOGO SECTION */
+  .resume-link:hover {
+    background: var(--about-wine);
+  }
 
-.nuke-logo {
-    position: relative;
-    top: 10px;
-    left: -45px;
-    width: 50px !important; 
-    height: auto !important; /* Keeps aspect ratio */
+  .linkedin-link {
+    color: var(--about-berry);
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+  }
+
+  .profile-links a:focus-visible {
+    outline: 2px solid var(--about-ruby);
+    outline-offset: 4px;
+  }
+
+  .portrait {
+    margin: 0;
+    background: #28191d;
+  }
+
+  .portrait img {
     display: block;
-    margin-left: 125px; /* Moves it 200px to the right of the Houdini title */
-}
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.65;
+    object-fit: cover;
+    object-position: 63% center;
+  }
 
-.nuke-title {
-    font-family: Tahoma, sans-serif;
-    font-weight: bold;
-    font-size: 1.25em;
-    position: relative;
-    top: 10px;
-    left: -45px;
-}
-
-.nuke-description {
-    font-family: Tahoma, sans-serif;
-    font-size: 1em;
-    text-align: left;
-    position: relative;
-    top: -175px;
-    left: 275px;
-    max-width: 200px; /* Adjust if needed */
-    margin-top: 5px;
-}
-
-/* MAYA LOGO SECTION */
-.maya-logo {
-    position: relative;
-    top: 5px;
-    width: 50px !important; 
-    height: auto !important; /* Keeps aspect ratio */
+  .portrait::after {
+    content: '';
     display: block;
-    margin-left: 150px; /* Moves it 200px to the right of the Nuke title */
-}
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--about-wine),
+      var(--about-berry),
+      var(--about-ruby),
+      #e01e37
+    );
+  }
 
-.maya-title {
-    font-family: Tahoma, sans-serif;
-    font-weight: bold;
-    font-size: 1.25em;
-    position: relative;
-    top: 10px;
-}
+  .experience {
+    border-top: 1px solid var(--about-rule);
+    padding-top: 18px;
+  }
 
-.maya-description {
-    font-family: Tahoma, sans-serif;
-    font-size: 1em;
-    text-align: left;
-    position: relative;
-    top: -255px;
-    left: 590px;
-    max-width: 200px; /* Adjust if needed */
-    margin-top: 5px;
-}
+  h2 {
+    margin: 0 0 8px;
+    font-size: clamp(1.55rem, 3vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
 
-/* UNREAL SECTION */
-.unreal-logo {
-    position: relative;
-    top: 275px;
-    left: -847px;
-    width: 55px !important; 
-    height: auto !important; /* Keeps aspect ratio */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 clamp(18px, 3vw, 40px);
+  }
+
+  .skill {
+    border-bottom: 1px solid var(--about-rule);
+    padding-block: 19px;
+  }
+
+  .skill img {
     display: block;
-    margin-left: 150px; /* Moves it 200px to the right of the Nuke title */
-}
+    width: 38px;
+    height: 38px;
+    margin-bottom: 8px;
+    object-fit: contain;
+  }
 
-.unreal-title {
-    font-family: Tahoma, sans-serif;
-    font-weight: bold;
-    font-size: 1.25em;
-    position: relative;
-    top: 275px;
-    left: -847px;
-}
+  .skill h3 {
+    margin: 0 0 5px;
+    font-size: 1.06rem;
+    font-weight: 700;
+  }
 
-.unreal-description {
-    font-family: Tahoma, sans-serif;
-    font-size: 1em;
-    text-align: left;
-    position: relative;
-    top: -115px;
-    left: 25px;
-    max-width: 200px;
-    margin-top: 5px;
-}
+  .skill p {
+    margin: 0;
+    color: var(--about-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
 
-/* OnSet Section */
-.onset-logo {
-    position: relative;
-    top: 270px;
-    left: -742px;
-    width: 55px !important; 
-    height: auto !important; /* Keeps aspect ratio */
-    display: block;
-}
+  @media (max-width: 790px) {
+    .intro {
+      grid-template-columns: 1fr;
+    }
 
-.onset-title {
-    font-family: Tahoma, sans-serif;
-    font-weight: bold;
-    font-size: 1.25em;
-    position: relative;
-    top: 275px;
-    left: -742px;
-}
+    .skills-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
 
-.onset-description {
-    font-family: Tahoma, sans-serif;
-    font-size: 1em;
-    text-align: left;
-    position: relative;
-    top: -245px;
-    left: 275px;
-    max-width: 200px;
-    margin-top: 5px;
-}
-
-.onset-logo {
-    margin-left: -15px;
-}
-.onset-title {
-    margin-left: -10px;
-    font-size: 1rem;
-}
-
-/* Supervision Section */
-.supervision-logo {
-    position: relative;
-    top: 270px;
-    left: -700px;
-    width: 55px !important; 
-    height: auto !important; /* Keeps aspect ratio */
-    display: block;
-}
-
-.supervision-title {
-    font-family: Tahoma, sans-serif;
-    font-weight: bold;
-    font-size: 1.25em;
-    position: relative;
-    top: 275px;
-    left: -700px;
-}
-
-.supervision-description {
-    font-family: Tahoma, sans-serif;
-    font-size: 1em;
-    text-align: left;
-    position: relative;
-    top: -400px;
-    left: 600px;
-    max-width: 200px;
-    margin-top: 5px;
-}
-
-#wrapper {
-    display: block;
-    overflow: hidden;
-    height: 1250px;
-}
+  @media (max-width: 490px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
