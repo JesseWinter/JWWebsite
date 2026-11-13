@@ -2,32 +2,22 @@
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
   import { resolve } from '$app/paths';
+  import vfxStill from '$lib/images/Image1.png';
+  import colorStill from '$lib/images/Image11.png';
 
-  import image1 from '$lib/images/Image1.png';
-  import image2 from '$lib/images/Image2.png';
-  import image3 from '$lib/images/Image3.png';
-  import image4 from '$lib/images/Image4.png';
-  import image5 from '$lib/images/Image5.png';
-  import image6 from '$lib/images/Image6.png';
-  import image7 from '$lib/images/Image7.png';
-  import image8 from '$lib/images/Image8.png';
-  import image9 from '$lib/images/Image9.png';
-  import image10 from '$lib/images/Image10.png';
-  import image11 from '$lib/images/Image11.png';
+  const imageFiles = import.meta.glob<string>(
+    '/src/lib/images/Image*.png',
+    { eager: true, query: '?url', import: 'default' }
+  );
 
-  const slides = [
-    { src: image1, alt: 'Camera equipment and crew on a red-lit film set' },
-    { src: image2, alt: 'Crew members in silhouette on a red-lit film set' },
-    { src: image3, alt: 'Two people reviewing a sheet of paper on set' },
-    { src: image4, alt: 'Three collaborators posing for a photo' },
-    { src: image5, alt: 'Jesse Winter seated against a red-lit backdrop' },
-    { src: image6, alt: 'A group of collaborators on set' },
-    { src: image7, alt: 'Close-up of Jesse Winter in profile' },
-    { src: image8, alt: 'Jesse Winter wearing a headset outdoors' },
-    { src: image9, alt: 'Jesse Winter beside production equipment' },
-    { src: image10, alt: 'Jesse Winter holding a color chart on set' },
-    { src: image11, alt: 'Jesse Winter checking a color chart under set lighting' }
-  ];
+  const slides = Array.from({ length: 20 }, (_, index) => index + 1).flatMap((number) => {
+    const src = imageFiles[`/src/lib/images/Image${number}.png`];
+    return src ? [{ number, src }] : [];
+  });
+
+  const initialSlide = Math.max(0, slides.findIndex((slide) => slide.number === 2));
+  let activeSlide = $state(initialSlide);
+  const currentSlide = $derived(slides[activeSlide]);
 
   const filters = [
     { id: 'all', label: 'All' },
@@ -36,30 +26,24 @@
   ] as const;
 
   const reels = [
-    {
-      id: 'vfx',
-      label: 'VFX',
-      title: 'VFX Reel',
-      route: '/vfx',
-      image: image1
-    },
+    { id: 'vfx', label: 'VFX', title: 'VFX Reel', route: '/vfx', image: vfxStill },
     {
       id: 'color',
       label: 'Color Grading',
       title: 'Color Grading Reel',
       route: '/color',
-      image: image11
+      image: colorStill
     }
   ] as const;
 
-  let activeSlide = $state(1);
   let filter = $state<(typeof filters)[number]['id']>('all');
-
   const visibleReels = $derived(
     reels.filter((reel) => filter === 'all' || reel.id === filter)
   );
 
   onMount(() => {
+    if (slides.length < 2) return;
+
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
     let timer: number | undefined;
 
@@ -94,7 +78,7 @@
 
 <div class="home">
   <section class="hero" aria-labelledby="home-title">
-    <div class="identity">
+    <div>
       <p class="eyebrow">Atlanta, GA</p>
       <h1 id="home-title"><span>Jesse</span> <span>Winter</span></h1>
       <p class="role">Visual Effects Artist &amp; Film Colorist</p>
@@ -103,18 +87,18 @@
       </a>
     </div>
 
-    <div class="frame">
-      {#key activeSlide}
-        <img
-          src={slides[activeSlide].src}
-          alt={slides[activeSlide].alt}
-          width="2050"
-          height="1000"
-          fetchpriority={activeSlide === 1 ? 'high' : 'auto'}
-          in:fade={{ duration: 450 }}
-        />
-      {/key}
-    </div>
+    {#if currentSlide}
+      <div class="frame">
+        {#key currentSlide.number}
+          <img
+            src={currentSlide.src}
+            alt=""
+            fetchpriority={activeSlide === initialSlide ? 'high' : 'auto'}
+            in:fade={{ duration: 450 }}
+          />
+        {/key}
+      </div>
+    {/if}
   </section>
 
   <section class="selected-work" id="selected-work" aria-labelledby="work-title">

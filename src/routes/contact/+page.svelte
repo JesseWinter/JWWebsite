@@ -1,125 +1,111 @@
 <script lang="ts">
-  let service = $state<'vfx' | 'color'>('vfx');
+  import { enhance } from '$app/forms';
+  import type { ActionData } from './$types';
 
+  let { form }: { form: ActionData } = $props();
+  let sending = $state(false);
+
+  const values = $derived(form?.values);
   const email = 'jessewinter310@gmail.com';
-
-  const services = {
-    vfx: { name: 'VFX', rate: '$40/hr' },
-    color: { name: 'Color Grading', rate: '$25/hr' }
-  } as const;
-
-  const projectTypes = [
-    'Feature Film',
-    'Short Film',
-    'Commercial',
-    'Documentary',
-    'Other'
-  ];
-
-  function openEmailDraft(event: SubmitEvent) {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    if (!(form instanceof HTMLFormElement)) return;
-
-    const data = new FormData(form);
-    const name = String(data.get('name') ?? '').trim();
-    const replyTo = String(data.get('email') ?? '').trim();
-    const projectName = String(data.get('projectName') ?? '').trim();
-    const projectType = String(data.get('projectType') ?? '');
-    const colorService = String(data.get('colorService') ?? '');
-    const timeline = String(data.get('timeline') ?? '').trim();
-    const projectLink = String(data.get('projectLink') ?? '').trim();
-    const details = String(data.get('details') ?? '').trim();
-    const selectedService = services[service];
-
-    const subject = `${selectedService.name} inquiry — ${projectName}`;
-    const body = [
-      'Hi Jesse,',
-      '',
-      `Name: ${name}`,
-      `Reply email: ${replyTo}`,
-      `Service: ${selectedService.name}`,
-      ...(service === 'color' ? [`Color service: ${colorService}`] : []),
-      `Project: ${projectName}`,
-      `Project type: ${projectType}`,
-      `Hourly rate: ${selectedService.rate}`,
-      `Timeline: ${timeline || 'To be discussed'}`,
-      ...(projectLink ? [`Project or reference link: ${projectLink}`] : []),
-      '',
-      'Project details:',
-      details
-    ].join('\r\n');
-
-    window.location.href =
-      `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }
+  const projectTypes = ['Feature Film', 'Short Film', 'Commercial', 'Documentary', 'Other'];
 </script>
 
 <svelte:head>
   <title>Contact | Jesse Winter</title>
   <meta
     name="description"
-    content="Contact Jesse Winter about visual effects, color grading, or a custom show LUT for your next project."
+    content="Contact Jesse Winter about visual effects, color grading, or a custom show LUT."
   />
 </svelte:head>
 
 <section class="contact-page" aria-labelledby="contact-title">
-  <header class="intro">
+  <header>
     <h1 id="contact-title">Contact</h1>
     <p>Tell me about your project and what you need for VFX, color grading, or a show LUT.</p>
-    <a class="email-link" href={`mailto:${email}`}>{email}</a>
+    <a href={`mailto:${email}`}>{email}</a>
   </header>
 
-  <form onsubmit={openEmailDraft}>
-    <fieldset class="service-picker">
+  <form
+    method="POST"
+    use:enhance={() => {
+      sending = true;
+      return async ({ update }) => {
+        try {
+          await update();
+        } finally {
+          sending = false;
+        }
+      };
+    }}
+  >
+    <fieldset>
       <legend>What do you need?</legend>
-
-      <div class="service-options">
-        <label class="service-option">
-          <input type="radio" name="service" value="vfx" bind:group={service} />
-          <span>VFX</span>
-          <span class="rate">{services.vfx.rate}</span>
+      <div class="grid">
+        <label class="option">
+          <input type="radio" name="service" value="vfx" checked={values?.service !== 'color'} />
+          VFX
         </label>
 
-        <label class="service-option">
-          <input type="radio" name="service" value="color" bind:group={service} />
-          <span>Color Grading</span>
-          <span class="rate">{services.color.rate}</span>
+        <label class="option">
+          <input type="radio" name="service" value="color" checked={values?.service === 'color'} />
+          Color Grading
         </label>
       </div>
     </fieldset>
 
-    <div class="fields">
-      {#if service === 'color'}
-        <label class="field full">
-          <span>Color service</span>
-          <select name="colorService" required>
-            <option value="Color Grade">Color Grade</option>
-            <option value="Show LUT">Show LUT</option>
-          </select>
+    <label class="field color-service">
+      Color service
+      <select name="colorService" value={values?.colorService || 'Color Grade'}>
+        <option>Color Grade</option>
+        <option>Show LUT</option>
+      </select>
+    </label>
+
+    <fieldset>
+      <legend>Pricing</legend>
+      <div class="grid">
+        <label class="option">
+          <input type="radio" name="pricing" value="hourly" checked={values?.pricing !== 'project'} />
+          Hourly
+          <strong class="rate vfx-rate">$40/hr</strong>
+          <strong class="rate color-rate">$25/hr</strong>
         </label>
-      {/if}
 
+        <label class="option">
+          <input type="radio" name="pricing" value="project" checked={values?.pricing === 'project'} />
+          Project rate
+          <span class="rate">Request a quote</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="grid">
       <label class="field">
-        <span>Your name</span>
-        <input name="name" type="text" autocomplete="name" required maxlength="100" />
+        Your name
+        <input name="name" autocomplete="name" value={values?.name ?? ''} required maxlength="100" />
       </label>
 
       <label class="field">
-        <span>Email address</span>
-        <input name="email" type="email" autocomplete="email" required maxlength="150" />
+        Email address
+        <input
+          name="email"
+          type="email"
+          autocomplete="email"
+          value={values?.email ?? ''}
+          required
+          maxlength="150"
+        />
       </label>
 
       <label class="field">
-        <span>Project name</span>
-        <input name="projectName" type="text" required maxlength="120" />
+        Project name
+        <input name="projectName" value={values?.projectName ?? ''} required maxlength="120" />
       </label>
 
       <label class="field">
-        <span>Project type</span>
-        <select name="projectType" required>
-          <option value="" disabled selected>Select a project type</option>
+        Project type
+        <select name="projectType" value={values?.projectType ?? ''} required>
+          <option value="" disabled>Select a project type</option>
           {#each projectTypes as type (type)}
             <option value={type}>{type}</option>
           {/each}
@@ -127,230 +113,132 @@
       </label>
 
       <label class="field">
-        <span>Timeline <small>(optional)</small></span>
-        <input name="timeline" type="text" placeholder="e.g. Final delivery December 15" maxlength="120" />
+        Timeline (optional)
+        <input name="timeline" value={values?.timeline ?? ''} maxlength="120" />
       </label>
 
       <label class="field">
-        <span>Project or reference link <small>(optional)</small></span>
-        <input name="projectLink" type="url" placeholder="https://…" maxlength="250" />
+        Project or reference link (optional)
+        <input name="projectLink" type="url" value={values?.projectLink ?? ''} maxlength="250" />
       </label>
 
       <label class="field full">
-        <span>Project details</span>
-        <textarea
-          name="details"
-          rows="5"
-          required
-          maxlength="800"
-          placeholder={service === 'vfx'
-            ? 'Tell me about the shots, the effects you need, and any references.'
-            : 'Tell me about your footage, camera, and the look you want to achieve.'}
-        ></textarea>
+        Project details
+        <textarea name="details" rows="5" value={values?.details ?? ''} required maxlength="2000"></textarea>
       </label>
     </div>
 
-    <div class="form-footer">
-      <p aria-live="polite">
-        {services[service].name} <strong>{services[service].rate}</strong>
-      </p>
-      <button type="submit" aria-describedby="email-note">Open email draft</button>
+    <div hidden>
+      <label>
+        Company website
+        <input name="companyWebsite" autocomplete="off" tabindex="-1" />
+      </label>
     </div>
 
-    <p class="email-note" id="email-note">
-      This opens a draft in your email app. Review it and send it from there.
-    </p>
+    <button type="submit" disabled={sending}>
+      {sending ? 'Sending…' : 'Send inquiry'}
+    </button>
+
+    {#if form?.success}
+      <p role="status">Thanks! Your inquiry was sent.</p>
+    {:else if form?.error}
+      <p class="error" role="alert">{form.error}</p>
+    {/if}
   </form>
 </section>
 
 <style>
   .contact-page {
-    width: min(100%, 900px);
-    box-sizing: border-box;
+    width: min(900px, calc(100% - var(--gutter, 18px) * 2));
     margin-inline: auto;
-    padding: clamp(28px, 5vw, 60px) var(--gutter, 18px) 48px;
-    color: var(--ink, #fff5ed);
+    padding-block: clamp(28px, 5vw, 60px) 48px;
   }
 
-  .intro {
-    margin-bottom: 28px;
-  }
+  header { margin-bottom: 24px; }
 
   h1 {
     margin: 0 0 14px;
-    color: var(--wine, #ffb5bb);
-    font: 700 clamp(3rem, 8vw, 6rem)/0.9 var(--display, sans-serif);
-    letter-spacing: -0.04em;
+    color: var(--wine);
+    font: 700 clamp(3rem, 8vw, 6rem)/.9 var(--display, sans-serif);
     text-transform: uppercase;
   }
 
-  .intro p {
-    max-width: 55ch;
-    margin: 0 0 5px;
-    line-height: 1.6;
-  }
+  header p { margin: 0 0 8px; }
+  a, .rate, .error { color: var(--berry); }
+  a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; }
+  form { padding-top: 22px; border-top: 1px solid var(--rule); }
+  fieldset { min-width: 0; margin: 0 0 20px; padding: 0; border: 0; }
+  legend { margin-bottom: 9px; padding: 0; font-weight: 700; }
 
-  .email-link {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    color: var(--berry, #ff9da8);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-    overflow-wrap: anywhere;
-  }
-
-  form {
-    padding-top: 22px;
-    border-top: 1px solid var(--rule, #594149);
-  }
-
-  .service-picker {
-    min-inline-size: 0;
-    margin: 0 0 20px;
-    padding: 0;
-    border: 0;
-  }
-
-  legend {
-    margin-bottom: 10px;
-    padding: 0;
-    font-size: 1.1rem;
-    font-weight: 700;
-  }
-
-  .service-options,
-  .fields {
+  .grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px 16px;
   }
 
-  .service-option {
+  .option {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
+    flex-wrap: wrap;
     gap: 8px 10px;
     min-height: 52px;
-    box-sizing: border-box;
     padding: 10px 12px;
-    border: 1px solid var(--rule, #594149);
+    border: 1px solid var(--rule);
     cursor: pointer;
   }
 
-  .service-option:has(input:checked) {
-    border-color: var(--berry, #ff9da8);
+  .option:has(input:checked) {
+    border-color: var(--berry);
     background: #351f28;
   }
 
-  .service-option input {
-    width: 16px;
-    height: 16px;
-    margin: 0;
-    accent-color: var(--berry, #ff9da8);
-  }
+  .option input { accent-color: var(--berry); }
+  .rate { margin-inline-start: auto; }
+  .field { display: grid; gap: 6px; min-width: 0; font-weight: 600; }
+  .full { grid-column: 1 / -1; }
+  .color-service { margin-bottom: 20px; }
+  .color-service, .color-rate { display: none; }
+  form:has(input[name='service'][value='color']:checked) .color-service { display: grid; }
+  form:has(input[name='service'][value='color']:checked) .color-rate { display: inline; }
+  form:has(input[name='service'][value='color']:checked) .vfx-rate { display: none; }
 
-  .rate {
-    margin-inline-start: auto;
-    color: var(--berry, #ff9da8);
-    font-weight: 700;
-    white-space: nowrap;
-  }
-
-  .field {
-    display: grid;
-    gap: 6px;
-    min-width: 0;
-    font-weight: 600;
-  }
-
-  .full {
-    grid-column: 1 / -1;
-  }
-
-  small,
-  .email-note {
-    color: var(--muted, #d5b7bb);
-    font-weight: 400;
-  }
-
-  .field input,
-  .field select,
-  .field textarea {
+  .field :is(input, select, textarea) {
     width: 100%;
     min-width: 0;
     min-height: 46px;
     box-sizing: border-box;
     padding: 10px 12px;
-    border: 1px solid var(--rule, #594149);
+    border: 1px solid var(--rule);
     background: #1c1317;
     color: inherit;
     font: inherit;
-    font-size: 1rem;
     font-weight: 400;
   }
 
-  .field textarea {
-    resize: vertical;
-  }
-
-  .field input::placeholder,
-  .field textarea::placeholder {
-    color: #bfa6ad;
-  }
-
-  .form-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 22px;
-  }
-
-  .form-footer p {
-    margin: 0;
-  }
-
-  .form-footer strong {
-    margin-inline-start: 6px;
-    color: var(--berry, #ff9da8);
-  }
+  textarea { resize: vertical; }
 
   button {
+    margin-top: 20px;
     min-height: 46px;
     padding-inline: 18px;
     border: 0;
-    background: var(--ruby, #a11d33);
-    color: var(--cream, #fff5ed);
-    font: inherit;
+    background: var(--ruby);
+    color: var(--cream);
     font-weight: 700;
     cursor: pointer;
   }
 
-  button:hover {
-    background: #bd2442;
-  }
+  button:disabled { opacity: .65; cursor: wait; }
 
   :is(a, input, select, textarea, button):focus-visible {
-    outline: 2px solid var(--berry, #ff9da8);
+    outline: 2px solid var(--berry);
     outline-offset: 3px;
   }
 
-  .email-note {
-    margin: 12px 0 0;
-    font-size: 0.875rem;
-    line-height: 1.5;
-  }
+  [role='status'], .error { margin-top: 12px; }
 
   @media (max-width: 560px) {
-    .service-options,
-    .fields {
-      grid-template-columns: 1fr;
-    }
-
-    .form-footer button {
-      width: 100%;
-    }
+    .grid { grid-template-columns: 1fr; }
+    button { width: 100%; }
   }
 </style>
