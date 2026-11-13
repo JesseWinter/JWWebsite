@@ -12,9 +12,6 @@
     { route: '/color', label: 'Color Grading' },
     { route: '/about', label: 'About' }
   ] as const;
-
-  const contactRoutes = ['/vfx', '/color', '/about'];
-  const showContact = $derived(contactRoutes.includes(page.route.id ?? ''));
 </script>
 
 <svelte:head>
@@ -48,15 +45,13 @@
         {/each}
       </nav>
 
-      {#if showContact}
-        <a
-          class="contact-link"
-          href="mailto:jessewinter310@gmail.com"
-          aria-label="Contact Jesse Winter by email"
-        >
-          Contact
-        </a>
-      {/if}
+      <a
+        class="contact-link"
+        href={resolve('/contact')}
+        aria-current={page.route.id === '/contact' ? 'page' : undefined}
+      >
+        Contact
+      </a>
     </div>
   </header>
 
@@ -198,7 +193,8 @@
     font-weight: 700;
   }
 
-  .contact-link:hover {
+  .contact-link:hover,
+  .contact-link[aria-current='page'] {
     background: #ffdde0;
   }
 
